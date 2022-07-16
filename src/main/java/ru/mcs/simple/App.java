@@ -16,10 +16,13 @@ public class App {
         try {
             session.beginTransaction();
 
-            Person changePerson = session.get(Person.class, 2);
-            session.remove(changePerson);
+            Person changePerson = new Person("Some Name", 60);
+            session.persist(changePerson);
 
             session.getTransaction().commit();
+
+            System.out.println(String.format("Id: %s", changePerson.getId()));
+
         } finally {
             sessionFactory.close();
         }
