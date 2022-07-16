@@ -7,4 +7,5 @@
 -- )
 
 -- INSERT INTO person(id, name, age) VALUES(1, 'Test person', 200);
-select * from person;
+-- select * from person;
+drop table Person;
