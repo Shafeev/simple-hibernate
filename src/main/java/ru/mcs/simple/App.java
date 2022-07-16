@@ -13,12 +13,15 @@ public class App {
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         Session session = sessionFactory.getCurrentSession();
 
-        session.beginTransaction();
+        try {
+            session.beginTransaction();
 
-        Person person = session.get(Person.class, 1);
+            Person person = session.get(Person.class, 1);
 
-        System.out.println(person);
-        System.out.println(String.format("Name: %s, age: %d", person.getName(), person.getAge()));
-        session.getTransaction().commit();
+            System.out.println(String.format("Name: %s, age: %d", person.getName(), person.getAge()));
+            session.getTransaction().commit();
+        } finally {
+            sessionFactory.close();
+        }
     }
 }
