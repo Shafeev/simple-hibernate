@@ -16,12 +16,14 @@ public class App {
         Session session = sessionFactory.getCurrentSession();
 
         try {
-            session.beginTransaction()
+            session.beginTransaction();
 
-            List<Person> persons = session.createQuery("FROM Person", Person.class).getResultList();
+            List<Person> persons = session.createQuery("FROM Person where age > 30 " +
+                    "AND name LIKE '%Some%'", Person.class).getResultList();
             for (Person person : persons) {
                 System.out.println(person.toString());
             }
+
             session.getTransaction().commit();
         } finally {
             sessionFactory.close();
