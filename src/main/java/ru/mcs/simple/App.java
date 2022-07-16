@@ -17,16 +17,7 @@ public class App {
             session.beginTransaction();
 
             Person changePerson = session.get(Person.class, 2);
-            changePerson.setName("Иван Иванович");
-            changePerson.setAge(25);
-
-//            Person person1 = new Person("Test 1", 12);
-//            Person person2 = new Person("Test 2", 22);
-//            Person person3 = new Person("Test 3", 32);
-//
-//            session.persist(person1);
-//            session.persist(person2);
-//            session.persist(person3);
+            session.remove(changePerson);
 
             session.getTransaction().commit();
         } finally {
