@@ -29,8 +29,12 @@ public class VirtualField {
     public VirtualField() {
     }
 
-    public VirtualField(String fieldName) {
+    public VirtualField(String fieldName, String dataType, boolean indexed, int fieldNum, VirtualObject virtualObject) {
         this.fieldName = fieldName;
+        this.dataType = dataType;
+        this.indexed = indexed;
+        this.fieldNum = fieldNum;
+        this.virtualObject = virtualObject;
     }
 
     public int getId() {

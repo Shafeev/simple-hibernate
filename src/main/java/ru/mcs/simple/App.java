@@ -10,9 +10,9 @@ import java.util.List;
 
 public class App {
     public static void main(String[] args) {
-        Configuration configuration = new Configuration().addAnnotatedClass(Person.class).addAnnotatedClass(Item.class)
-
-                ;
+        Configuration configuration = new Configuration().addAnnotatedClass(VirtualObject.class)
+                .addAnnotatedClass(VirtualField.class)
+                .addAnnotatedClass(VirtualData.class);
 
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         Session session = sessionFactory.getCurrentSession();
@@ -20,18 +20,26 @@ public class App {
         try {
             session.beginTransaction();
 
-//            VirtualObject vObject = new VirtualObject("Account");
-//            VirtualField vField = new VirtualField()
-            Person person = session.get(Person.class, 2);
-            System.out.println(person);
+            VirtualObject vObject = new VirtualObject("Account");
+            session.persist(vObject);
 
-            Item newItem = new Item("Item from H1", person);
-            Item newItem2 = new Item("Item from H1", person);
+            int fieldNum = 0;
+            VirtualField vField = new VirtualField("Name1", "String", false, fieldNum++, vObject);
+            VirtualField vField2 = new VirtualField("Name2", "Number", false, fieldNum++, vObject);
+            VirtualField vField3 = new VirtualField("Name3", "Checkbox", false, fieldNum++, vObject);
+            session.persist(vField);
+            session.persist(vField2);
+            session.persist(vField3);
 
-            session.persist(newItem);
-            session.persist(newItem2);
-//            List<Item> items = person.getItems();
-//            System.out.println(items);
+            VirtualData vData1 = new VirtualData(vObject, "Account1", "value1", "123", "false", null, null, null, null, null, null, null);
+            VirtualData vData2 = new VirtualData(vObject, "Account1", "value2", "456", "false", null, null, null, null, null, null, null);
+            VirtualData vData3 = new VirtualData(vObject, "Account1", "value3", "789", "true", null, null, null, null, null, null, null);
+            VirtualData vData4 = new VirtualData(vObject, "Account1", "value4", "012", "false", null, null, null, null, null, null, null);
+            session.persist(vData1);
+            session.persist(vData2);
+            session.persist(vData3);
+            session.persist(vData4);
+
 
             session.getTransaction().commit();
         } finally {

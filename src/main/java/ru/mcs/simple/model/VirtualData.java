@@ -55,6 +55,21 @@ public class VirtualData {
         this.name = name;
     }
 
+    public VirtualData(VirtualObject virtualObject, String name, String value0, String value1, String value2, String value3, String value4, String value5, String value6, String value7, String value8, String value9) {
+        this.virtualObject = virtualObject;
+        this.value0 = value0;
+        this.value1 = value1;
+        this.value2 = value2;
+        this.value3 = value3;
+        this.value4 = value4;
+        this.value5 = value5;
+        this.value6 = value6;
+        this.value7 = value7;
+        this.value8 = value8;
+        this.value9 = value9;
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }

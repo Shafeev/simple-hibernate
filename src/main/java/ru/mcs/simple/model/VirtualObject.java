@@ -18,7 +18,7 @@ public class VirtualObject {
     @OneToMany(mappedBy = "virtualObject")
     private List<VirtualData> virtualDataList;
 
-    @OneToMany(mappedBy = "virtualField")
+    @OneToMany(mappedBy = "virtualObject")
     private List<VirtualField> virtualFieldList;
 
     public VirtualObject() {
@@ -61,8 +61,6 @@ public class VirtualObject {
         return "VirtualObject{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", virtualDataList=" + virtualDataList +
-                ", virtualFieldList=" + virtualFieldList +
                 '}';
     }
 }
