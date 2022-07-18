@@ -1,6 +1,7 @@
 package ru.mcs.simple.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 import java.util.List;
 
@@ -18,7 +19,8 @@ public class VirtualObject {
     @OneToMany(mappedBy = "virtualObject", cascade = CascadeType.PERSIST)
     private List<VirtualData> virtualDataList;
 
-    @OneToMany(mappedBy = "virtualObject", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "virtualObject")
+    @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
     private List<VirtualField> virtualFieldList;
 
     public VirtualObject() {

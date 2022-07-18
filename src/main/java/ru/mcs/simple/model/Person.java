@@ -1,6 +1,7 @@
 package ru.mcs.simple.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 import java.util.List;
 
@@ -20,6 +21,10 @@ public class Person {
 
     @OneToMany(mappedBy = "owner")
     private List<Item> items;
+
+    @OneToOne(mappedBy = "person")
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    private Passport passport;
 
     public Person() {
     }
@@ -57,12 +62,26 @@ public class Person {
         this.items = items;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Passport getPassport() {
+        return passport;
+    }
+
+    public void setPassport(Passport passport) {
+        this.passport = passport;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
+                ", items=" + items +
+                ", passport=" + passport +
                 '}';
     }
 }

@@ -14,6 +14,12 @@ CREATE TABLE Item
 
 );
 
+CREATE TABLE Passport
+(
+    person_id int PRIMARY KEY REFERENCES Person(id) ON DELETE CASCADE,
+    passport_number int NOT NULL
+)
+
 INSERT INTO Person(name, age) VALUES ('Tom', 35);
 INSERT INTO Person(name, age) VALUES ('Bob', 52);
 INSERT INTO Person(name, age) VALUES ('Katy', 14);
