@@ -34,18 +34,10 @@ public class App {
             Session session = sessionFactory.getCurrentSession();
             session.beginTransaction();
 
-            Movie movie = new Movie("Pulp fiction", 1994);
-            Actor actor1 = new Actor("Harvey Keitel", 81);
-            Actor actor2 = new Actor("Samuel L. Jackson", 72);
-
-            movie.setActors(new ArrayList<>(List.of(actor1, actor2)));
-
-            actor1.setMovies(new ArrayList<>(Collections.singleton(movie)));
-            actor2.setMovies(new ArrayList<>(Collections.singleton(movie)));
-
-            session.persist(movie);
-            session.persist(actor1);
-            session.persist(actor2);
+            Movie movie = session.get(Movie.class, 1);
+            System.out.println(movie.getActors());
+            Actor actor= session.get(Actor.class, 1);
+            System.out.println(actor.getName());
 
             session.getTransaction().commit();
         }
