@@ -1,4 +1,4 @@
-package ru.mcs.simple.model;
+package ru.mcs.simple.model.virtual;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.Cascade;

@@ -1,4 +1,4 @@
-package ru.mcs.simple.model;
+package ru.mcs.simple.model.person;
 
 import jakarta.persistence.*;
 
