@@ -15,10 +15,10 @@ public class VirtualObject {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "virtualObject")
+    @OneToMany(mappedBy = "virtualObject", cascade = CascadeType.PERSIST)
     private List<VirtualData> virtualDataList;
 
-    @OneToMany(mappedBy = "virtualObject")
+    @OneToMany(mappedBy = "virtualObject", cascade = CascadeType.PERSIST)
     private List<VirtualField> virtualFieldList;
 
     public VirtualObject() {
